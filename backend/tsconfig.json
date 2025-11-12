@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // Node 18+ ならこのくらいでOK
+    "target": "ES2022",
+
+    // 🔥 ESM 前提
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // ファイル配置
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // 型チェック
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Nodeの型使う
+    "types": ["node"],
+
+    // CJSライブラリも import しやすく
+    "esModuleInterop": true,
+
+    // 開発用
+    "skipLibCheck": true,
+    "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
