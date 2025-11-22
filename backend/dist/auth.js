@@ -1,6 +1,15 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import { prisma } from "./prismaClient.js";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.loginHandler = loginHandler;
+exports.authMiddleware = authMiddleware;
+exports.meHandler = meHandler;
+exports.logoutHandler = logoutHandler;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const prismaClient_1 = require("./prismaClient");
 // JWTの署名に使う秘密鍵（.env から読み込む）
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key";
 // JWTの有効期限
@@ -9,7 +18,7 @@ const JWT_EXPIRES_IN = "1h";
  * POST /api/auth/login
  * ユーザーIDとパスワードを受け取り、認証に成功したらJWTをCookieにセットする
  */
-export async function loginHandler(req, res) {
+async function loginHandler(req, res) {
     const { userId, password } = req.body;
     // 入力チェック
     if (!userId || !password) {
@@ -18,7 +27,7 @@ export async function loginHandler(req, res) {
             .json({ message: "ユーザーIDとパスワードを入力してください" });
     }
     // Userテーブルから userId で検索(findUniqueで一件取得)
-    const user = await prisma.user.findUnique({
+    const user = await prismaClient_1.prisma.user.findUnique({
         where: { userId: userId },
     });
     if (!user) {
@@ -27,7 +36,7 @@ export async function loginHandler(req, res) {
             .json({ message: "ユーザーIDまたはパスワードが違います" });
     }
     // パスワードチェック（平文 password と DB の passwordHash を比較）
-    const ok = await bcrypt.compare(password, user.passwordHash);
+    const ok = await bcrypt_1.default.compare(password, user.passwordHash);
     if (!ok) {
         return res
             .status(401)
@@ -39,7 +48,7 @@ export async function loginHandler(req, res) {
         role: user.role,
     };
     // JWTを署名して発行
-    const token = jwt.sign(payload, JWT_SECRET, {
+    const token = jsonwebtoken_1.default.sign(payload, JWT_SECRET, {
         expiresIn: JWT_EXPIRES_IN,
     });
     // HttpOnly Cookie にJWTをセット
@@ -61,13 +70,13 @@ export async function loginHandler(req, res) {
  * JWTを検証して req.user にペイロードを入れるミドルウェア
  * 認証が必要なAPIの前に挟んで使う
  */
-export function authMiddleware(req, res, next) {
+function authMiddleware(req, res, next) {
     const token = req.cookies.access_token; // CookieからJWTトークンを取り出す
     if (!token) {
         return res.status(401).json({ message: "未ログインです" });
     }
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
         req.user = decoded;
         next();
     }
@@ -81,12 +90,12 @@ export function authMiddleware(req, res, next) {
  * 現在ログイン中のユーザー情報を返す
  * （ブラウザに残っているCookieのJWTを検証して使う）
  */
-export async function meHandler(req, res) {
+async function meHandler(req, res) {
     if (!req.user) {
         return res.status(401).json({ message: "未ログインです" });
     }
     // JWTのidを使ってDBからユーザーを取り直す
-    const user = await prisma.user.findUnique({
+    const user = await prismaClient_1.prisma.user.findUnique({
         where: { id: req.user.id },
     });
     if (!user) {
@@ -103,8 +112,7 @@ export async function meHandler(req, res) {
  * POST /api/auth/logout
  * Cookieに入っているJWTを削除してログアウトする
  */
-export function logoutHandler(req, res) {
+function logoutHandler(req, res) {
     res.clearCookie("access_token");
     return res.json({ message: "ログアウトしました" });
 }
-//# sourceMappingURL=auth.js.map

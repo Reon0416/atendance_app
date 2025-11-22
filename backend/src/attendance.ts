@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { AttendanceAction } from "@prisma/client";
-import { prisma } from "./prismaClient.js";
-import { AuthRequest } from "./auth.js";
+import { prisma } from "./prismaClient";
+import { AuthRequest } from "./auth";
 
 export async function resisterAttendanceHandler(req: AuthRequest, res: Response) {
   const user = req.user;
@@ -10,7 +10,7 @@ export async function resisterAttendanceHandler(req: AuthRequest, res: Response)
     return res.status(401).json({ message: "未ログインです" });
   }
 
-  const action = req.body
+  const action = req.body.action;
 
   const validActions: AttendanceAction[] = [
     AttendanceAction.CLOCK_IN,

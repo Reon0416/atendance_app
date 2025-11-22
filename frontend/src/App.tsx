@@ -1,70 +1,77 @@
-import { useEffect, useState } from "react";
 import LoginPage from "./pages/LoginPage";
-import EmployeeDashboard from "./pages/EmployeeDash";
+import EmployeeAttendance from "./pages/EmployeeAttendance";
 import OwnerDashboard from "./pages/OwnerDash";
-import { fetchMe, logout } from "./api";
+import { Route, Routes, Navigate, Link } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth";
+import ProtectedRoute from "./components/ProtectedRoute";
 import type { User } from "./types";
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [error, setError] = useState<string>("");
-
-  useEffect(() => {
-    const loadMe = async () => {
-      try {
-        const me = await fetchMe();
-        if (me) setUser(me);
-      } catch (err) {
-        console.error(err);
-        setError("ログイン状態の確認に失敗しました");
-      } finally {
-        setInitialLoading(false);
-      }
-    };
-    loadMe();
-  }, []);
-
-  const handleLoginSuccess = (user: User) => {
-    setUser(user);
-    setError("");
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setUser(null);
-    }
-  };
+  const { user, initialLoading, handleLoginSuccess, error, handleLogout } =
+    useAuth();
 
   if (initialLoading) {
     return (
-      <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+      <div className="text-3xl font-bold text-blue-600">
         ログイン状態を確認しています…
       </div>
     );
   }
 
-  if (!user) {
-    return (
-      <div style={{ fontFamily: "sans-serif" }}>
-        {error && (<p style={{ color: "red", textAlign: "center", marginTop: "1rem" }}>{error}</p>)}
-        <LoginPage onLogin={handleLoginSuccess} />
-      </div>
-    );
-  }
+  return (
+    <div className="font-sans">
+      
+      {error && (
+        <div className="p-3 bg-red-100 border border-red-400 text-red-700 text-center font-medium">
+          {error}
+        </div>
+      )}
 
-  // ログイン済みのとき
-  if (user.role === "EMPLOYEE") {
-    return (
-      <EmployeeDashboard user={user} onLogout={handleLogout} />
-    );
-  }
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            user ? (
+              <Navigate to="/" replace />
+            ) : (
+              <LoginPage onLogin={handleLoginSuccess} />
+            )
+          }
+        />
 
-  return <OwnerDashboard user={user} onLogout={handleLogout} />;
+        <Route
+          path="/employee"
+          element={
+            <ProtectedRoute user={user}>
+              <EmployeeAttendance user={user as User} onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/owner"
+          element={
+            <ProtectedRoute user={user}>
+              <OwnerDashboard user={user as User} onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            user ? (
+              <Navigate
+                to={user.role === "OWNER" ? "/owner" : "/employee"}
+                replace
+              />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

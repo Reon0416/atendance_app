@@ -1,4 +1,4 @@
-import type { User } from "./types.ts";
+import type { User } from "../types.ts";
 
 const API_BASE_URL="http://localhost:8080";
 

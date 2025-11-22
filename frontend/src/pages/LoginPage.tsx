@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { login } from "../api";
+import { login } from "../api/auth";
 import type { User } from "../types";
-import "./LoginPage.css";
 
 type LoginPageProps = {
   onLogin: (user: User) => void;
@@ -38,36 +37,63 @@ function LoginPage({ onLogin }: LoginPageProps) {
   };
 
   return (
-    <div className="login-page">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2 className="login-title">ログイン</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-2xl space-y-6">
+        <h2 className="text-3xl font-extrabold text-gray-900 text-center border-b pb-3 mb-6">
+          <span className="text-indigo-600">勤怠管理</span> ログイン
+        </h2>
 
-        <div className="form-group">
-          <label htmlFor="userId">ユーザーID</label>
-          <input
-            id="userId"
-            type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="userId" className="block text-sm font-medium text-gray-700 mb-1">
+              ユーザーID
+            </label>
+            <input
+              id="userId"
+              type="text"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              required
+              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+              placeholder="あなたのユーザーID"
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="password">パスワード</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              パスワード
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+              placeholder="********"
+            />
+          </div>
 
-        {error && <p className="error-message">{error}</p>}
+          {error && (
+            <p className="text-sm text-red-600 bg-red-50 p-2 rounded-lg border border-red-200 text-center">
+              {error}
+            </p>
+          )}
 
-        <button type="submit" disabled={loading} className="login-button">
-          {loading ? "ログイン中..." : "ログイン"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-base font-medium text-white transition duration-200 ease-in-out 
+              ${loading 
+                ? 'bg-indigo-400 cursor-not-allowed' 
+                : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform hover:scale-[1.01]'
+              }`
+            }
+          >
+            {loading ? "ログイン中..." : "ログイン"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

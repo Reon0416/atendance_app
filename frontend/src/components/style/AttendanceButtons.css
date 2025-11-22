@@ -1,0 +1,96 @@
+.attendance-container {
+  display: flex;
+  justify-content: center;
+  background: #f9fafb;
+  padding: 16px;
+}
+
+.attendance-card {
+  width: 100%;
+  min-width: 600px;
+  padding: 32px;
+}
+
+
+.status-header {
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.status-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.status-message {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
+.button-grid {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+.btn-clock-in {
+  background: #4f46e5;
+}
+
+.btn-clock-in:hover {
+  background: #4338ca;
+  transform: scale(1.02);
+}
+
+.btn-break-start {
+  background: #f59e0b;
+}
+
+.btn-break-start:hover {
+  background: #d97706;
+  transform: scale(1.02);
+}
+
+.btn-break-end {
+  background: #10b981;
+}
+
+.btn-break-end:hover {
+  background: #059669;
+  transform: scale(1.02);
+}
+
+.btn-clock-out {
+  background: #f43f5e;
+}
+
+.btn-clock-out:hover {
+  background: #e11d48;
+  transform: scale(1.02);
+}
+
+.btn.disabled,
+.btn:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
