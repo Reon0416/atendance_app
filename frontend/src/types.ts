@@ -29,3 +29,11 @@ export type HealthRecordBody = {
   health: number;
   motivation: number;
 };
+
+export type GetHealthRecord = {
+    id: number;
+    employeeId: number;
+    health: number;
+    motivation: number;
+    recordedAt: string;
+};

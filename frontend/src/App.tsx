@@ -6,6 +6,7 @@ import { useAuth } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import HistoryAttendance from './pages/HistoryAttendance';
 import type { User } from "./types";
+import HealthRecord from "./pages/HealthRecord";
 
 function App() {
   const { user, initialLoading, handleLoginSuccess, error, handleLogout } =
@@ -61,6 +62,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <HistoryAttendance onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Health"
+          element={
+            <ProtectedRoute user={user}>
+              <HealthRecord onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />

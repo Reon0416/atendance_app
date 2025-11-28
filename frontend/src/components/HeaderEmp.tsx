@@ -13,6 +13,7 @@ export function HeaderEmp({ onLogout }: HeaderEmpProps) {
         <nav className="header-nav">
           <NavLink to="/employee">打刻</NavLink>
           <NavLink to="/history">勤怠履歴</NavLink>
+          <NavLink to="/health">健康管理</NavLink>
         </nav>
 
         <button className="logout-button" onClick={onLogout}>
