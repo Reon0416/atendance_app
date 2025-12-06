@@ -1,4 +1,5 @@
 export type PayrollResult = {
+  employeeId: number;
   month: number;
   totalPay: number;
   totalNormalHours: number;
@@ -10,14 +11,21 @@ const API_BASE_URL = "http://localhost:8080";
 /**
  * 認証済みユーザーの今月の給与計算結果をサーバーから取得する関数。
  */
-export async function fetchMonthlyPayroll(): Promise<PayrollResult> {
-  const res = await fetch(`${API_BASE_URL}/api/calculation/payroll`, {
+export async function fetchMonthlyPayroll(employeeId?: number): Promise<PayrollResult> {
+  const url = new URL(`${API_BASE_URL}/api/calculation/payroll`);
+
+  if (employeeId) { 
+    url.searchParams.append('employeeId', String(employeeId)); 
+  }
+
+  const res = await fetch(url.toString(), {
     method: "GET",
     credentials: "include",
     headers: {
-      "Content-Type": "application/json",
+        "Content-Type": "application/json",
     },
   });
+
 
   if (!res.ok) {
     console.error("[Payroll fetch error] status:", res.status);

@@ -11,6 +11,7 @@ import CreateAccount from "./pages/CreateAccount";
 import type { User } from "./types";
 import HealthRecord from "./pages/HealthRecord";
 import SettingOwner from "./pages/SettingOwner";
+import AllEmployeeDash from "./pages/AllEmployeeDash";
 
 function App() {
   const { user, initialLoading, handleLoginSuccess, error, handleLogout } =
@@ -72,6 +73,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <OwnerDashboard  onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/table"
+          element={
+            <ProtectedRoute user={user}>
+              <AllEmployeeDash  onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />

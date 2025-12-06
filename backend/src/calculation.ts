@@ -14,6 +14,20 @@ export async function payrollHandler(req: AuthRequest, res: Response) {
     return res.status(401).json({ message: "未認証です" });
   }
 
+  const targetEmployeeIdParam = req.query.employeeId;
+  const requestedId = targetEmployeeIdParam ? Number(targetEmployeeIdParam) : null;
+
+  let finalEmployeeId = user.id;
+
+  if (requestedId !== null && requestedId !== user.id) {
+    
+    if(user.role !== "OWNER") {
+      return res.status(403).json({ message: "他者の給与計算を実行する権限がありません。" });
+    }
+
+    finalEmployeeId = requestedId;
+  }
+
   try {
     const rateRecord = await prisma.rate.findFirst({
       orderBy: { id: "asc" },
@@ -34,7 +48,7 @@ export async function payrollHandler(req: AuthRequest, res: Response) {
         .json({ message: "時給情報が設定されていません。" });
     }
 
-    const attendanceRecords = await getMonthlyAttendanceRecords(user.id);
+    const attendanceRecords = await getMonthlyAttendanceRecords(finalEmployeeId);
 
     // 給与計算の実行
     const payrollResult = calculatePayroll(
@@ -44,6 +58,7 @@ export async function payrollHandler(req: AuthRequest, res: Response) {
 
     const now = new Date();
     return res.status(200).json({
+      employeeId: finalEmployeeId,
       month: now.getMonth() + 1,
       ...payrollResult,
     });
