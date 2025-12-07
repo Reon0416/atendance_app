@@ -11,7 +11,7 @@ const API_BASE_URL = "http://localhost:8080";
 export async function resisterNewUser(
   data: AccountRegisterBody
 ): Promise<AccountRegisterResponse> {
-  const res = await fetch(`${API_BASE_URL}/api/account/create`, {
+  const res = await fetch(`${API_BASE_URL}/api/setting/account`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -3,11 +3,11 @@
   justify-content: center;
   background: #f9fafb;
   padding: 16px;
+  min-width: 600px;
 }
 
 .attendance-card {
   width: 100%;
-  min-width: 600px;
   padding: px;
 }
 

@@ -12,10 +12,13 @@
 /* GoalTrackerのスタイル */
 
 .target-description {
-  font-size: 1.1rem;
-  color: #4b5563;
+  font-size: 24px;
+  color: #374151;
   margin-bottom: 20px;
   font-weight: 500;
+  padding-bottom: 10px;
+  display: inline-block;
+  border-bottom: 2px solid #eee;
 }
 
 .chart-and-metrics {
@@ -35,22 +38,19 @@
   line-height: 1.8;
 }
 
+.metrics-detail {
+  font-size: 20px;
+}
+
 .percent-label {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #ef4444;
+  color: #10b981;
   margin-bottom: 10px;
 }
 
 .percent-label.completed {
   color: #10b981;
-}
-
-.status-message {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 15px;
 }
 
 .earned-amount {

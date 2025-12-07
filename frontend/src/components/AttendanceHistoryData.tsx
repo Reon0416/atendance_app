@@ -57,7 +57,7 @@ export function AttendanceHistoryData() {
     <div className="attendance-history">
       <h2>今月の打刻履歴</h2>
       <button onClick={refreshHistory} className="refresh-button">
-        🔄 更新
+        更新
       </button>
 
       {workDays.map((workDayKey) => (

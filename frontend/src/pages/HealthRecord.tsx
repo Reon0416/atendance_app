@@ -7,7 +7,7 @@ type Props = {
 
 export function HealthRecord({ onLogout }: Props) {
   return (
-    <div>
+    <div className="health-page-wapper">
       <HeaderEmp onLogout={onLogout} />
       <HealthChart />
     </div>

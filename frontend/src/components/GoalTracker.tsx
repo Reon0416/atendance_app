@@ -48,7 +48,6 @@ export function GoalTracker({ reloadKey }: GoalTrackerProps) {
     progressPercent,
     earnedAmount,
     neededAmount,
-    message,
     isCompleted,
   } = progressData;
 
@@ -62,7 +61,7 @@ export function GoalTracker({ reloadKey }: GoalTrackerProps) {
       <div className="progress-display">
         <div className="goal-status-card">
           <h3 className="target-description">
-            目標: {target.description} (¥{target.targetAmount.toLocaleString()})
+            目標: {target.description} ({target.targetAmount.toLocaleString()}円)
           </h3>
 
           <div className="chart-and-metrics">
@@ -95,17 +94,16 @@ export function GoalTracker({ reloadKey }: GoalTrackerProps) {
               <p className={`percent-label ${isCompleted ? "completed" : ""}`}>
                 {Math.round(progressPercent)}% 達成
               </p>
-              <p className="status-message">{message}</p>
-              <p>
+              <p className="metrics-detail">
                 現在貯めた金額:{" "}
                 <span className="earned-amount">
-                  ¥{earnedAmount.toLocaleString()}
+                  {earnedAmount.toLocaleString()}円
                 </span>
               </p>
-              <p>
+              <p className="metrics-detail">
                 不足金額:{" "}
                 <span className="needed-amount">
-                  ¥{neededAmount.toLocaleString()}
+                  {neededAmount.toLocaleString()}円
                 </span>
               </p>
             </div>

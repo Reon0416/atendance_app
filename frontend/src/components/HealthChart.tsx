@@ -74,7 +74,7 @@ export function HealthChart({employeeId}: HealthChartProps) {
       className="health-chart-container"
       style={{ width: "100%", height: 350 }}
     >
-      <h3>今月の体調・モチベーション推移 (5: 良好 / -5: 不良)</h3>
+      <h3>今月の体調・モチベーション推移</h3>
 
       <ResponsiveContainer width="100%" height="100%">
         <LineChart

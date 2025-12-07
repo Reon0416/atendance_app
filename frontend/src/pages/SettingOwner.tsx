@@ -3,13 +3,14 @@ import { useState } from "react";
 import { PasswordSetting } from "../components/PasswordSetting";
 import { UserIdSetting } from "../components/UserIdSetting";
 import { RateSetting } from "../components/RateSetting";
+import { EmployeeAccountSetting } from "../components/EmployeeAccountSetting";
 import "./style/Setting.css";
 
 type Props = {
   onLogout: () => void;
 };
 
-type ActiveTab = "password" | "userid" | "rate";
+type ActiveTab = "password" | "userid" | "rate" | "account";
 
 function SettingOwner({ onLogout }: Props) {
   const [activeTab, setActiveTab] = useState<ActiveTab>("password");
@@ -22,6 +23,8 @@ function SettingOwner({ onLogout }: Props) {
         return <UserIdSetting />;
       case "rate":
         return <RateSetting />;
+      case "account":
+        return <EmployeeAccountSetting />;
       default:
         return null;
     }
@@ -52,6 +55,12 @@ function SettingOwner({ onLogout }: Props) {
             onClick={() => setActiveTab("rate")}
           >
             時給
+          </div>
+          <div
+            className={`tab-button ${activeTab === "account" ? "active" : ""}`}
+            onClick={() => setActiveTab("account")}
+          >
+            アカウント作成
           </div>
         </div>
         <div className="tab-content">{renderContent()}</div>

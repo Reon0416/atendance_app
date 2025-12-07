@@ -3,11 +3,10 @@ import EmployeeAttendance from "./pages/EmployeeAttendance";
 import OwnerDashboard from "./pages/OwnerDash";
 import SettingEmp from "./pages/SettingEmp";
 import PayrollDisplay from "./pages/PayrollEmp";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import HistoryAttendance from "./pages/HistoryAttendance";
-import CreateAccount from "./pages/CreateAccount";
 import type { User } from "./types";
 import HealthRecord from "./pages/HealthRecord";
 import SettingOwner from "./pages/SettingOwner";
@@ -16,9 +15,7 @@ import AllEmployeeDash from "./pages/AllEmployeeDash";
 function App() {
   const { user, initialLoading, handleLoginSuccess, error, handleLogout } =
     useAuth();
-
-  const navigate = useNavigate();
-  const navigateToRegister = () => navigate("/account");
+  
 
   if (initialLoading) {
     return (
@@ -45,18 +42,7 @@ function App() {
             ) : (
               <LoginPage
                 onLogin={handleLoginSuccess}
-                onNavigateToRegister={navigateToRegister}
               />
-            )
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            user ? (
-              <Navigate to="/" replace />
-            ) : (
-              <CreateAccount/>
             )
           }
         />

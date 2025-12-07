@@ -144,9 +144,9 @@ export async function getGoalProgressHandler(req: AuthRequest, res: Response) {
 
     const neededAmount = Math.max(0, targetAmount - earnedAmount);
 
-    let statusMessage = `目標達成まであと ¥${neededAmount.toLocaleString()} です。`;
+    let statusMessage = `目標達成まであと ${neededAmount.toLocaleString()}円 です`;
     if(isCompleted) {
-      statusMessage = "🎉 達成しました! 目標変更をしてください。";
+      statusMessage = "🎉 目標を達成しました! 目標変更をしてください。";
     }
 
     return res.status(200).json({

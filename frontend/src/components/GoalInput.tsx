@@ -45,7 +45,6 @@ export function GoalInput({ onGoalSet }: GoalInputProps) {
 
   return (
     <div className="goal-input-card">
-      <h3>新しい目標を設定する</h3>
       <form onSubmit={handleSubmit}>
         {message && (
           <p
@@ -65,7 +64,7 @@ export function GoalInput({ onGoalSet }: GoalInputProps) {
           required
         />
 
-        <label>目標金額 (¥)</label>
+        <label>目標金額 (円)</label>
         <input
           type="number"
           value={amount}
@@ -75,7 +74,7 @@ export function GoalInput({ onGoalSet }: GoalInputProps) {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? "設定中..." : "目標を設定"}
+          {loading ? "設定中..." : "新しい目標を設定"}
         </button>
       </form>
     </div>

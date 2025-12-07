@@ -5,10 +5,9 @@ import "./style/LoginPage.css";
 
 type LoginPageProps = {
   onLogin: (user: User) => void;
-  onNavigateToRegister: () => void;
 };
 
-function LoginPage({ onLogin, onNavigateToRegister }: LoginPageProps) {
+function LoginPage({ onLogin }: LoginPageProps) {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -80,9 +79,6 @@ function LoginPage({ onLogin, onNavigateToRegister }: LoginPageProps) {
 
           <button type="submit" disabled={loading} className="login-button">
             {loading ? "ログイン中..." : "ログイン"}
-          </button>
-          <button className="account-button" onClick={onNavigateToRegister}>
-            新規アカウント作成
           </button>
         </form>
       </div>

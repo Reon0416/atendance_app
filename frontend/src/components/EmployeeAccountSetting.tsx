@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { resisterNewUser } from "../api/account";
-import { useNavigate } from "react-router-dom";
 import type { AccountRegisterBody, AccountRegisterResponse } from "../types";
-import "./style/AccountCreateForm.css";
+import "./style/Setting.css";
 
-type UserRole = "EMPLOYEE" | "OWNER";
-
-export function AccountCreateForm() {
-  const navigate = useNavigate();
+export function EmployeeAccountSetting() {
 
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [role, setRole] = useState<UserRole>("EMPLOYEE");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -34,27 +29,22 @@ export function AccountCreateForm() {
       return;
     }
 
-    const data: AccountRegisterBody = { userId, name, password, role };
+    const data: AccountRegisterBody = { userId, name, password };
 
     const response: AccountRegisterResponse = await resisterNewUser(data);
 
     setMessage(`アカウント ${response.user.userId} が正常に作成されました。`);
 
     setLoading(false);
-    navigate("/login", { replace: true });
-  };
-
-  const handleGoBack = () => {
-    navigate("/login");
   };
 
   return (
-    <div className="register-container">
+    <div className="setting-form-card">
       <h2>新規アカウント作成</h2>
       <form onSubmit={handleSubmit} className="register-form">
         {message && (
           <p
-            className={`form-message ${
+            className={`message ${
               message.includes("8文字以上") || message.includes("一致しません")
                 ? "error"
                 : "success"
@@ -96,25 +86,8 @@ export function AccountCreateForm() {
           required
         />
 
-        <label>役割</label>
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value as UserRole)}
-        >
-          <option value="EMPLOYEE">従業員</option>
-          <option value="OWNER">オーナー</option>
-        </select>
-
         <button type="submit" disabled={loading}>
           {loading ? "登録中..." : "アカウントを作成"}
-        </button>
-        <button
-          type="button"
-          onClick={handleGoBack}
-          className="go-back-button"
-          disabled={loading}
-        >
-          戻る
         </button>
       </form>
     </div>

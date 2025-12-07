@@ -126,7 +126,6 @@ export type AccountRegisterBody = {
   userId: string;
   name: string;
   password: string;
-  role: "EMPLOYEE" | "OWNER";
 };
 
 // 成功レスポンスに含まれるユーザー情報の型（パスワードを除く）
