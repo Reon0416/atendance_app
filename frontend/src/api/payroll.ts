@@ -6,8 +6,7 @@ export type PayrollResult = {
   totalLateNightHours: number;
 };
 
-const API_BASE_URL = "http://localhost:8080";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 /**
  * 認証済みユーザーの今月の給与計算結果をサーバーから取得する関数。
  */

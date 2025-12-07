@@ -15,7 +15,6 @@ import OwnerPage from "./pages/owner/health/OwnerPage";
 function App() {
   const { user, initialLoading, handleLoginSuccess, error, handleLogout } =
     useAuth();
-  
 
   if (initialLoading) {
     return (
@@ -24,6 +23,8 @@ function App() {
       </div>
     );
   }
+
+  const isOwner = user?.role === "OWNER";
 
   return (
     <div className="font-sans">
@@ -38,22 +39,14 @@ function App() {
           path="/login"
           element={
             user ? (
-              <Navigate to="/" replace />
+              <Navigate to={isOwner ? "/owner" : "/employee"} replace />
             ) : (
-              <LoginPage
-                onLogin={handleLoginSuccess}
-              />
+              <LoginPage onLogin={handleLoginSuccess} />
             )
           }
         />
-        <Route
-          path="/employee"
-          element={
-            <ProtectedRoute user={user}>
-              <AttendancePage user={user as User} onLogout={handleLogout} />
-            </ProtectedRoute>
-          }
-        />
+
+        // オーナールート
         <Route
           path="/owner"
           element={
@@ -63,23 +56,34 @@ function App() {
           }
         />
         <Route
-          path="/table"
+          path="/owner/table"
           element={
             <ProtectedRoute user={user}>
-              <EmployeeTablePage  onLogout={handleLogout} />
+              <EmployeeTablePage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/settingOwner"
+          path="/owner/setting"
           element={
             <ProtectedRoute user={user}>
               <SettingOwnerPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
+
+
+        // 従業員ルート
         <Route
-          path="/history"
+          path="/employee"
+          element={
+            <ProtectedRoute user={user}>
+              <AttendancePage user={user as User} onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/employee/history"
           element={
             <ProtectedRoute user={user}>
               <HistoryAttendancePage onLogout={handleLogout} />
@@ -87,7 +91,7 @@ function App() {
           }
         />
         <Route
-          path="/health"
+          path="/employee/health"
           element={
             <ProtectedRoute user={user}>
               <HealthPage onLogout={handleLogout} />
@@ -95,7 +99,7 @@ function App() {
           }
         />
         <Route
-          path="/settingEmp"
+          path="/employee/setting"
           element={
             <ProtectedRoute user={user}>
               <SettingEmpPage onLogout={handleLogout} />
@@ -103,7 +107,7 @@ function App() {
           }
         />
         <Route
-          path="/payroll"
+          path="/employee/payroll"
           element={
             <ProtectedRoute user={user}>
               <PayrollPage onLogout={handleLogout} />

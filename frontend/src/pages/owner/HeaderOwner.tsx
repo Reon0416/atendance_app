@@ -12,8 +12,8 @@ export function HeaderOwner({ onLogout }: HeaderOwnerProps) {
       <div className="nav-wrapper">
         <nav className="header-nav">
           <NavLink to="/owner">体調管理</NavLink>
-          <NavLink to="/table">従業員一覧テーブル</NavLink>
-          <NavLink to="/settingOwner">設定</NavLink>
+          <NavLink to="/owner/table">従業員一覧テーブル</NavLink>
+          <NavLink to="/owner/setting">設定</NavLink>
         </nav>
 
         <button className="logout-button" onClick={onLogout}>
