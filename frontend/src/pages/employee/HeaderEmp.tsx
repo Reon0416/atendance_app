@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./style/Header.css"
+import "../style/Header.css";
 
 type HeaderEmpProps = {
   onLogout: () => void;

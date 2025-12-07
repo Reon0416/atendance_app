@@ -2,7 +2,7 @@ import { HeaderEmp } from "../HeaderEmp";
 import { useState } from "react";
 import { PasswordSetting } from "../../../components/PasswordSetting";
 import { UserIdSetting } from "../../../components/UserIdSetting";
-import ".../style/setting.css";
+import "../../style/Setting.css";
 
 type Props = {
   onLogout: () => void;

@@ -1,7 +1,7 @@
 import { HeaderOwner } from "../HeaderOwner";
 import { OwnerAlertDash } from "./OwnerAlertDash";
 import { OwnerHealthDash } from "./OwnerHealthDash";
-import "./style/OwnerDash.css";
+import "./style/OwnerPage.css";
 
 type Props = {
   onLogout: () => void;

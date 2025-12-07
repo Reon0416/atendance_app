@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { updateRateAPI } from "../../../api/setting";
 import type { RateUpdatePayload } from "../../../types";
-import "./style/Setting.css";
+import "../../style/Setting.css";
 
 export function RateSetting() {
   const [hourlyRate, setHourlyRate] = useState<string>("");

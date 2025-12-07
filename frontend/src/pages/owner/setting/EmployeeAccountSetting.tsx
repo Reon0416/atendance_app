@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { resisterNewUser } from "../../../api/account";
 import type { AccountRegisterBody, AccountRegisterResponse } from "../../../types";
-import "./style/Setting.css";
+import "../../style/Setting.css";
 
 export function EmployeeAccountSetting() {
 
