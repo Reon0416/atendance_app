@@ -1,13 +1,13 @@
-import { HeaderOwner } from "../components/HeaderOwner";
-import { OwnerAlertDash } from "../components/OwnerAlertDash";
-import { OwnerHealthDash } from "../components/OwnerHealthDash";
+import { HeaderOwner } from "../HeaderOwner";
+import { OwnerAlertDash } from "./OwnerAlertDash";
+import { OwnerHealthDash } from "./OwnerHealthDash";
 import "./style/OwnerDash.css";
 
 type Props = {
   onLogout: () => void;
 };
 
-function OwnerDash({ onLogout }: Props) {
+function OwnerPage({ onLogout }: Props) {
   return (
     <div className="owner-wapper">
       <HeaderOwner onLogout={onLogout} />
@@ -19,4 +19,4 @@ function OwnerDash({ onLogout }: Props) {
   );
 }
 
-export default OwnerDash;
+export default OwnerPage;

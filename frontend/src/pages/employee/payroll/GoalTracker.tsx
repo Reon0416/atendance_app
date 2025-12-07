@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { fetchGoalProgress } from "../api/goal";
-import type { GoalProgressResponse } from "../types";
+import { fetchGoalProgress } from "../../../api/goal";
+import type { GoalProgressResponse } from "../../../types";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import "./style/Goal.css";
 

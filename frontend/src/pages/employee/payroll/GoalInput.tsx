@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { setGoal } from "../api/goal";
-import type { GoalSetResponse, GoalSetBody } from "../types";
+import { setGoal } from "../../../api/goal";
+import type { GoalSetResponse, GoalSetBody } from "../../../types";
 import "./style/Goal.css";
 
 type GoalInputProps = {

@@ -1,16 +1,16 @@
-import LoginPage from "./pages/LoginPage";
-import EmployeeAttendance from "./pages/EmployeeAttendance";
-import OwnerDashboard from "./pages/OwnerDash";
-import SettingEmp from "./pages/SettingEmp";
-import PayrollDisplay from "./pages/PayrollEmp";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
-import HistoryAttendance from "./pages/HistoryAttendance";
 import type { User } from "./types";
-import HealthRecord from "./pages/HealthRecord";
-import SettingOwner from "./pages/SettingOwner";
-import AllEmployeeDash from "./pages/AllEmployeeDash";
+import LoginPage from "./pages/Login/LoginPage";
+import HealthPage from "./pages/employee/health/HealthPage";
+import EmployeeTablePage from "./pages/owner/table/EmployeeTablePage";
+import SettingOwnerPage from "./pages/owner/setting/SettingOwnerPage";
+import HistoryAttendancePage from "./pages/employee/history/HistoryAttendancePage";
+import SettingEmpPage from "./pages/employee/setting/SettingEmpPage";
+import PayrollPage from "./pages/employee/payroll/PayrollPage";
+import AttendancePage from "./pages/employee/attendance/AttendancePage";
+import OwnerPage from "./pages/owner/health/OwnerPage";
 
 function App() {
   const { user, initialLoading, handleLoginSuccess, error, handleLogout } =
@@ -50,7 +50,7 @@ function App() {
           path="/employee"
           element={
             <ProtectedRoute user={user}>
-              <EmployeeAttendance user={user as User} onLogout={handleLogout} />
+              <AttendancePage user={user as User} onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -58,7 +58,7 @@ function App() {
           path="/owner"
           element={
             <ProtectedRoute user={user}>
-              <OwnerDashboard  onLogout={handleLogout} />
+              <OwnerPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -66,7 +66,7 @@ function App() {
           path="/table"
           element={
             <ProtectedRoute user={user}>
-              <AllEmployeeDash  onLogout={handleLogout} />
+              <EmployeeTablePage  onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -74,7 +74,7 @@ function App() {
           path="/settingOwner"
           element={
             <ProtectedRoute user={user}>
-              <SettingOwner onLogout={handleLogout} />
+              <SettingOwnerPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -82,7 +82,7 @@ function App() {
           path="/history"
           element={
             <ProtectedRoute user={user}>
-              <HistoryAttendance onLogout={handleLogout} />
+              <HistoryAttendancePage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -90,7 +90,7 @@ function App() {
           path="/health"
           element={
             <ProtectedRoute user={user}>
-              <HealthRecord onLogout={handleLogout} />
+              <HealthPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -98,7 +98,7 @@ function App() {
           path="/settingEmp"
           element={
             <ProtectedRoute user={user}>
-              <SettingEmp onLogout={handleLogout} />
+              <SettingEmpPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -106,7 +106,7 @@ function App() {
           path="/payroll"
           element={
             <ProtectedRoute user={user}>
-              <PayrollDisplay onLogout={handleLogout} />
+              <PayrollPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />

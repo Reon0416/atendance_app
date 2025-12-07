@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchMonthlyPayroll } from "../api/payroll";
-import type {PayrollResult} from "../api/payroll";
+import { fetchMonthlyPayroll } from "../../../api/payroll";
+import type {PayrollResult} from "../../../api/payroll";
 import "./style/PayrollDisplay.css";
 
 export function PayrollDisplay() {

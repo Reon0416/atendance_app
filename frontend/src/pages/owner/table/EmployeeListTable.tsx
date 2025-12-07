@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { getEmployeeList } from "../api/healthCheck";
-import { fetchMonthlyPayroll } from "../api/payroll";
-import type { PayrollResult } from "../api/payroll";
-import type { Employee } from "../types";
+import { getEmployeeList } from "../../../api/healthCheck";
+import { fetchMonthlyPayroll } from "../../../api/payroll";
+import type { PayrollResult } from "../../../api/payroll";
+import type { Employee } from "../../../types";
 import "./style/EmployeeListTable.css";
 type FullPayrollSummary = PayrollResult & {
   name: string;

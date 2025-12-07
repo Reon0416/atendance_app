@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { login } from "../api/auth";
-import type { User } from "../types";
+import { login } from "../../api/auth";
+import type { User } from "../../types";
 import "./style/LoginPage.css";
 
 type LoginPageProps = {

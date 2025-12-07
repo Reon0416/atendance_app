@@ -1,5 +1,5 @@
-import { useAttendanceHistory } from "../hooks/useAttendanceHistory";
-import type { AttendanceActionType } from "../types";
+import { useAttendanceHistory } from "../../../hooks/useAttendanceHistory";
+import type { AttendanceActionType } from "../../../types";
 import "./style/AttendanceHistoryData.css"
 
 const actionToLabel = (action: AttendanceActionType) => {

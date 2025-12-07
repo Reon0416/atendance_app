@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import {
   fetchUncheckedAlerts,
   markAlertAsCheckedAPI,
-} from "../api/healthCheck";
-import type { AlertLog } from "../types";
+} from "../../../api/healthCheck";
+import type { AlertLog } from "../../../types";
 import "./style/OwnerAlertDash.css";
 
 export function OwnerAlertDash() {

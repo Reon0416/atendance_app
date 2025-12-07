@@ -1,8 +1,8 @@
-import { HeaderEmp } from "../components/HeaderEmp";
+import { HeaderEmp } from "../HeaderEmp";
 import { useState } from "react";
-import { PasswordSetting } from "../components/PasswordSetting";
-import { UserIdSetting } from "../components/UserIdSetting";
-import "./style/Setting.css";
+import { PasswordSetting } from "../../../components/PasswordSetting";
+import { UserIdSetting } from "../../../components/UserIdSetting";
+import ".../style/setting.css";
 
 type Props = {
   onLogout: () => void;
@@ -10,7 +10,7 @@ type Props = {
 
 type ActiveTab = "password" | "userid";
 
-function SettingEmp({ onLogout }: Props) {
+function SettingEmpPage({ onLogout }: Props) {
   const [activeTab, setActiveTab] = useState<ActiveTab>("password");
 
   const renderContent = () => {
@@ -50,4 +50,4 @@ function SettingEmp({ onLogout }: Props) {
   );
 }
 
-export default SettingEmp;
+export default SettingEmpPage;

@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
-import {
-  resisterAttendance,
-  getLatestAttendanceRecord,
-} from "../api/attendance";
+import { resisterAttendance, getLatestAttendanceRecord } from "../../../api/attendance";
 import type {
   AttendanceActionType,
   ConditionData,
   LatestAttendanceRecord,
   HealthRecordResponse,
-} from "../types";
+} from "../../../types";
 import { ConditionInput } from "./ConditionInput";
-import { resisterHealthRecord } from "../api/healthCheck";
+import { resisterHealthRecord } from "../../../api/healthCheck";
 import "./style/AttendanceButtons.css";
 
 type AttendanceStatus =

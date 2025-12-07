@@ -1,12 +1,13 @@
-import { HeaderOwner } from "../components/HeaderOwner";
-import { EmployeeListTable } from "../components/EmployeeListTable";
+import { HeaderOwner } from "../HeaderOwner";
+import { EmployeeListTable } from "./EmployeeListTable";
 
 
 type Props = {
   onLogout: () => void;
 };
 
-function AllEmployeeDash({ onLogout }: Props) {
+function EmployeeTablePage
+({ onLogout }: Props) {
   return (
     <div className="owner-wapper">
       <HeaderOwner onLogout={onLogout} />
@@ -17,4 +18,4 @@ function AllEmployeeDash({ onLogout }: Props) {
   );
 }
 
-export default AllEmployeeDash;
+export default EmployeeTablePage;

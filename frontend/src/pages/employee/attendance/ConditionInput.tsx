@@ -1,4 +1,4 @@
-import type { ConditionData } from "../types";
+import type { ConditionData } from "../../../types";
 import "./style/ConditionInput.css";
 
 type ConditionInputProps = {

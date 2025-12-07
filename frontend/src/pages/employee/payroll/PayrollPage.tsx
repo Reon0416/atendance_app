@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { GoalInput } from "../components/GoalInput";
-import { GoalTracker } from "../components/GoalTracker";
-import { PayrollDisplay } from "../components/PayrollDisplay";
-import { HeaderEmp } from "../components/HeaderEmp";
-import "./style/PayrollEmp.css";
+import { GoalInput } from "./GoalInput";
+import { GoalTracker } from "./GoalTracker";
+import { PayrollDisplay } from "./PayrollDisplay";
+import { HeaderEmp } from "../HeaderEmp";
+import "./style/PayrollPage.css";
 
 type Props = {
   onLogout: () => void;
 };
 
-function PayrollEmp({ onLogout }: Props) {
+function PayrollPage({ onLogout }: Props) {
   const [reloadKey, setReloadKey] = useState(0);
 
   const handleGoalSet = () => {
@@ -32,4 +32,4 @@ function PayrollEmp({ onLogout }: Props) {
   );
 }
 
-export default PayrollEmp;
+export default PayrollPage;

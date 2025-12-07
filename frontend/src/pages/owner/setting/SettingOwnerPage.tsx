@@ -1,10 +1,10 @@
-import { HeaderOwner } from "../components/HeaderOwner";
+import { HeaderOwner } from "../HeaderOwner";
 import { useState } from "react";
-import { PasswordSetting } from "../components/PasswordSetting";
-import { UserIdSetting } from "../components/UserIdSetting";
-import { RateSetting } from "../components/RateSetting";
-import { EmployeeAccountSetting } from "../components/EmployeeAccountSetting";
-import "./style/Setting.css";
+import { PasswordSetting } from "../../../components/PasswordSetting";
+import { UserIdSetting } from "../../../components/UserIdSetting";
+import { RateSetting } from "./RateSetting";
+import { EmployeeAccountSetting } from "./EmployeeAccountSetting";
+import "../../style/Setting.css";
 
 type Props = {
   onLogout: () => void;
@@ -12,7 +12,7 @@ type Props = {
 
 type ActiveTab = "password" | "userid" | "rate" | "account";
 
-function SettingOwner({ onLogout }: Props) {
+function SettingOwnerPage({ onLogout }: Props) {
   const [activeTab, setActiveTab] = useState<ActiveTab>("password");
 
   const renderContent = () => {
@@ -69,4 +69,4 @@ function SettingOwner({ onLogout }: Props) {
   );
 }
 
-export default SettingOwner;
+export default SettingOwnerPage;

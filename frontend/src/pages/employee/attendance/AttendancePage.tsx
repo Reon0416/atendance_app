@@ -1,15 +1,15 @@
-import { AttendanceButtons } from "../components/AttendanceButtons";
-import { RealTimeClock } from "../components/RealTimeClock";
-import { HeaderEmp } from "../components/HeaderEmp";
-import type { User } from "../types";
-import "./style/EmployeeAttendance.css";
+import { AttendanceButtons } from "./AttendanceButtons";
+import { RealTimeClock } from "./RealTimeClock";
+import { HeaderEmp } from "../HeaderEmp";
+import type { User } from "../../../types";
+import "./style/AttendancePage.css";
 
 type Props = {
   user: User;
   onLogout: () => void;
 };
 
-function EmployeeAttendance({ user, onLogout }: Props) {
+function AttendancePage({ user, onLogout }: Props) {
   return (
     <div className="attendance-page-wrapper">
       <HeaderEmp onLogout={onLogout} />
@@ -28,4 +28,4 @@ function EmployeeAttendance({ user, onLogout }: Props) {
   );
 }
 
-export default EmployeeAttendance;
+export default AttendancePage;

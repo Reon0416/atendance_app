@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { HealthChart } from "./HealthChart";
-import { getEmployeeList } from "../api/healthCheck";
-import type { Employee } from "../types";
+import { HealthChart } from "../../../components/HealthChart";
+import { getEmployeeList } from "../../../api/healthCheck";
+import type { Employee } from "../../../types";
 import "./style/OwnerHealthDash.css";
 
 export function OwnerHealthDash() {
