@@ -1,8 +1,8 @@
 import { Response } from "express";
-import { prisma } from "./prismaClient";
+import { prisma } from "../prismaClient";
 import bcrypt from "bcrypt";
-import { AuthRequest } from "./middlewares/authMiddleware";
-import { AccountRegisterBody } from "./type";
+import { AuthRequest } from "../middlewares/authMiddleware";
+import { AccountRegisterBody } from "../type";
 import { Role } from "@prisma/client";
 
 // パスワード変更のリクエストボディの型
@@ -156,32 +156,37 @@ export async function updateRateHandler(req: AuthRequest, res: Response) {
   }
 }
 
-
 /**
  * 新しいユーザーアカウントをDBに登録するハンドラー関数。
  */
 export async function accountRegisterHandler(req: AuthRequest, res: Response) {
   const user = req.user!;
-  const { userId, name, password } = req.body as AccountRegisterBody; 
+  const { userId, name, password } = req.body as AccountRegisterBody;
 
-    if (user.role !== "OWNER") {
+  if (user.role !== "OWNER") {
     return res
       .status(403)
       .json({ message: "アカウント作成はオーナーのみ実行可能です" });
   }
 
   if (!userId || !name || !password) {
-    return res.status(400).json({ message: "すべての項目を入力してください。" });
+    return res
+      .status(400)
+      .json({ message: "すべての項目を入力してください。" });
   }
 
-  if(password.length < 8) {
-    return res.status(400).json({ message: "パスワードは8文字以上である必要があります。" });
+  if (password.length < 8) {
+    return res
+      .status(400)
+      .json({ message: "パスワードは8文字以上である必要があります。" });
   }
 
   try {
-    const existingUser = await prisma.user.findUnique({ where: { userId }});
-    if(existingUser) {
-      return res.status(409).json({ message: "このメールアドレスはすでに登録されています。" });
+    const existingUser = await prisma.user.findUnique({ where: { userId } });
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ message: "このメールアドレスはすでに登録されています。" });
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
@@ -198,15 +203,22 @@ export async function accountRegisterHandler(req: AuthRequest, res: Response) {
         userId: true,
         name: true,
         role: true,
-      }
+      },
     });
 
     return res.status(201).json({
       message: "アカウントが正常に作成されました。",
-      user: { id: newUser.id, userId: newUser.userId, name: newUser.name, role: newUser.role }
+      user: {
+        id: newUser.id,
+        userId: newUser.userId,
+        name: newUser.name,
+        role: newUser.role,
+      },
     });
   } catch (error) {
     console.error("User registration failed:", error);
-    return res.status(500).json({ message: "アカウント作成中にエラーが発生しました。" });
+    return res
+      .status(500)
+      .json({ message: "アカウント作成中にエラーが発生しました。" });
   }
 }

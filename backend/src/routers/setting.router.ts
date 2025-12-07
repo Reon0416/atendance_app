@@ -4,7 +4,7 @@ import {
   updatePasswordHandler,
   updateUserIdHandler,
   updateRateHandler,
-} from "../setting";
+} from "../controllers/setting.controller";
 import { authMiddleware } from "../middlewares/authMiddleware";
 import { verifyPasswordMiddleware } from "../middlewares/verifyPasswordMiddleware";
 

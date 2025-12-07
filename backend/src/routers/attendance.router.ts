@@ -1,5 +1,5 @@
 import express from "express";
-import { resisterAttendanceHandler, getMonthlyAttendanceHandler, getLatestAttendanceRecordHandler } from "../attendance";
+import { resisterAttendanceHandler, getMonthlyAttendanceHandler, getLatestAttendanceRecordHandler } from "../controllers/attendance.controller";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
 

@@ -5,7 +5,7 @@ import {
   getAlertLogHandler,
   updateAlertLogHandler,
   getEmployeeListHandler,
-} from "../healthCheck";
+} from "../controllers/health.controller";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
 const router = express.Router();

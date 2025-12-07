@@ -1,8 +1,8 @@
-import { AuthRequest } from "./auth";
+import { AuthRequest } from "./auth.controller";
 import { Response } from "express";
-import { prisma } from "./prismaClient";
-import { calculatePayroll } from "./services/payrollService";
-import { getAttendanceRecordsSince } from "./services/attendanceService";
+import { prisma } from "../prismaClient";
+import { calculatePayroll } from "../services/payrollService";
+import { getAttendanceRecordsSince } from "../services/attendanceService";
 import { console } from "inspector";
 
 type GoalBody = {
@@ -103,36 +103,51 @@ export async function getGoalProgressHandler(req: AuthRequest, res: Response) {
     // アクティブな目標を取得
     let activeGoal = await prisma.goal.findFirst({
       where: { employeeId: user.id, isActive: true },
-      orderBy: { createdAt: "desc" }, 
+      orderBy: { createdAt: "desc" },
     });
 
     const now = new Date();
 
     // 月初めの自動リセットチェック(月が変わり、まだ目標がアクティブなら強制リセット)
-    if(activeGoal && needsMonthlyReset(activeGoal.createdAt, now)) {
+    if (activeGoal && needsMonthlyReset(activeGoal.createdAt, now)) {
       await prisma.goal.update({
         where: { id: activeGoal.id },
-        data: {isActive: false, isAchieved: false},
+        data: { isActive: false, isAchieved: false },
       });
 
       activeGoal = null;
     }
 
-    if(!activeGoal) {
-      return res.status(200).json({ progressPercent: 0, target: null, isCompleted: false, message: "新しい目標を設定してください。" });
+    if (!activeGoal) {
+      return res
+        .status(200)
+        .json({
+          progressPercent: 0,
+          target: null,
+          isCompleted: false,
+          message: "新しい目標を設定してください。",
+        });
     }
 
     // 時給情報を取得
-    const rateRecord = await prisma.rate.findFirst({ orderBy: { id: 'asc' } });
-    if(!rateRecord) {
-      return res.status(500).json({ message: "時給情報が設定されていません。" });
+    const rateRecord = await prisma.rate.findFirst({ orderBy: { id: "asc" } });
+    if (!rateRecord) {
+      return res
+        .status(500)
+        .json({ message: "時給情報が設定されていません。" });
     }
 
     // 目標設定日時以降（今月末まで）の勤怠記録を取得
-    const attendanceRecords = await getAttendanceRecordsSince(user.id, activeGoal.createdAt);
+    const attendanceRecords = await getAttendanceRecordsSince(
+      user.id,
+      activeGoal.createdAt
+    );
 
     // 目標設定後の給与を計算
-    const payrollResult = calculatePayroll(attendanceRecords as any, rateRecord as any);
+    const payrollResult = calculatePayroll(
+      attendanceRecords as any,
+      rateRecord as any
+    );
 
     const earnedAmount = payrollResult.totalPay;
     const targetAmount = activeGoal.targetAmount;
@@ -145,7 +160,7 @@ export async function getGoalProgressHandler(req: AuthRequest, res: Response) {
     const neededAmount = Math.max(0, targetAmount - earnedAmount);
 
     let statusMessage = `目標達成まであと ${neededAmount.toLocaleString()}円 です`;
-    if(isCompleted) {
+    if (isCompleted) {
       statusMessage = "🎉 目標を達成しました! 目標変更をしてください。";
     }
 
@@ -155,11 +170,12 @@ export async function getGoalProgressHandler(req: AuthRequest, res: Response) {
       progressPercent: progressPercent,
       neededAmount: neededAmount,
       isCompleted: isCompleted,
-      message: statusMessage
+      message: statusMessage,
     });
-
   } catch (error) {
     console.error("Goal progress calculation failed:", error);
-    return res.status(500).json({ message: "進捗の計算中にエラーが発生しました。" });
+    return res
+      .status(500)
+      .json({ message: "進捗の計算中にエラーが発生しました。" });
   }
 }

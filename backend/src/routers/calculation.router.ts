@@ -1,5 +1,5 @@
 import express from "express";
-import { payrollHandler } from "../calculation";
+import { payrollHandler } from "../controllers/calculation.controller";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
 const router = express.Router();

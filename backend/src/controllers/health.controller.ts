@@ -1,6 +1,6 @@
-import { AuthRequest } from "./middlewares/authMiddleware";
+import { AuthRequest } from "../middlewares/authMiddleware";
 import { Response } from "express";
-import { prisma } from "./prismaClient";
+import { prisma } from "../prismaClient";
 
 const ROLLING_DAYS = 7;
 const BORDER_VALUE = 5;
@@ -322,21 +322,25 @@ export async function getEmployeeListHandler(req: AuthRequest, res: Response) {
   try {
     const employees = await prisma.user.findMany({
       where: {
-        role: "EMPLOYEE"
+        role: "EMPLOYEE",
       },
       orderBy: {
-        name: "asc"
+        name: "asc",
       },
       select: {
         id: true,
         name: true,
         userId: true,
-      }
+      },
     });
 
     return res.status(200).json(employees);
   } catch (error) {
     console.error("Failed to fetch employee list:", error);
-    return res.status(500).json({ message: "従業員リストの取得中にサーバーエラーが発生しました。" });
+    return res
+      .status(500)
+      .json({
+        message: "従業員リストの取得中にサーバーエラーが発生しました。",
+      });
   }
 }

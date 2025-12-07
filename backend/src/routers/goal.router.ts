@@ -1,5 +1,5 @@
 import express from "express";
-import { setGoalHandler, getGoalProgressHandler } from "../goal";
+import { setGoalHandler, getGoalProgressHandler } from "../controllers/goal.controller";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
 const router = express.Router();

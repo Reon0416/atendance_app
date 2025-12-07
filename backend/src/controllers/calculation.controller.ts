@@ -1,8 +1,8 @@
-import { AuthRequest } from "./auth";
+import { AuthRequest } from "./auth.controller";
 import { Response } from "express";
-import { prisma } from "./prismaClient";
-import { getMonthlyAttendanceRecords } from "./services/attendanceService";
-import { calculatePayroll } from "./services/payrollService";
+import { prisma } from "../prismaClient";
+import { getMonthlyAttendanceRecords } from "../services/attendanceService";
+import { calculatePayroll } from "../services/payrollService";
 
 /**
  * 今月の給与計算を行うハンドラー
