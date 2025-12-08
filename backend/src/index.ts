@@ -11,7 +11,7 @@ import settingRouter from "./routers/setting.router";
 import calculationRouter from "./routers/calculation.router";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cookieParser());
