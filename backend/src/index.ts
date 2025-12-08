@@ -16,15 +16,15 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://attendance-app.vercel.app",
-];
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "https://attendance-app.vercel.app",
+// ];
 
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://attendance-app.vercel.app",
     credentials: true,
   })
 );
