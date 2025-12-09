@@ -8,6 +8,7 @@ export function RateSetting() {
   const [lateNightRate, setLateNightRate] = useState<string>("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,9 +24,16 @@ export function RateSetting() {
       return;
     }
 
+    if (currentPassword.length === 0) {
+      setMessage("現在のパスワードを入力してください。");
+      setLoading(false);
+      return;
+    }
+    
     const data: RateUpdatePayload = {
       hourlyRate: hRate,
       lateNightRate: lnRate,
+      currentPassword: currentPassword,
     };
 
     const response = await updateRateAPI(data);
@@ -75,6 +83,14 @@ export function RateSetting() {
           min="1"
           value={lateNightRate}
           onChange={(e) => setLateNightRate(e.target.value)}
+          required
+        />
+
+        <label>現在のパスワード</label>
+        <input
+          type="password"
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
           required
         />
 

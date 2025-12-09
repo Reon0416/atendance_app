@@ -11,7 +11,7 @@ import { verifyPasswordMiddleware } from "../middlewares/verifyPasswordMiddlewar
 const router = express.Router();
 
 //アカウント新規作成
-router.post("/account", authMiddleware, accountRegisterHandler);
+router.post("/account", authMiddleware, verifyPasswordMiddleware, accountRegisterHandler);
 
 // パスワードの更新
 router.put(
@@ -30,6 +30,6 @@ router.put(
 );
 
 // 時給の更新
-router.put("/rate", authMiddleware, updateRateHandler);
+router.put("/rate", authMiddleware, verifyPasswordMiddleware, updateRateHandler);
 
 export default router;

@@ -11,6 +11,7 @@ export function EmployeeAccountSetting() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +30,13 @@ export function EmployeeAccountSetting() {
       return;
     }
 
-    const data: AccountRegisterBody = { userId, name, password };
+    if (currentPassword.length === 0) {
+      setMessage("現在のパスワードを入力してください。");
+      setLoading(false);
+      return;
+    }
+
+    const data: AccountRegisterBody = { userId, name, password, currentPassword };
 
     const response: AccountRegisterResponse = await resisterNewUser(data);
 
@@ -83,6 +90,14 @@ export function EmployeeAccountSetting() {
           type="password"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
+          required
+        />
+
+        <label>現在のパスワード</label>
+        <input
+          type="password"
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
           required
         />
 

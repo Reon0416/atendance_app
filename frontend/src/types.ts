@@ -81,6 +81,7 @@ export type UserIdUpdateBody = {
 export type RateUpdatePayload = {
   hourlyRate: number;
   lateNightRate: number;
+  currentPassword: string;
 };
 
 // バックエンドから返されるレート情報 (確認用)
@@ -126,6 +127,7 @@ export type AccountRegisterBody = {
   userId: string;
   name: string;
   password: string;
+  currentPassword: string;
 };
 
 // 成功レスポンスに含まれるユーザー情報の型（パスワードを除く）
