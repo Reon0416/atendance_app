@@ -53,18 +53,20 @@ export function UserIdSetting() {
             {message}
           </p>
         )}
+
+        <label>現在のパスワード</label>
+        <input
+          type="password"
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
+          required
+        />
+        
         <label>新しいメールアドレス</label>
         <input
           type="email"
           value={newUserId}
           onChange={(e) => setNewUserId(e.target.value)}
-          required
-        />
-        <label>オーナーパスワード</label>
-        <input
-          type="password"
-          value={currentPassword}
-          onChange={(e) => setCurrentPassword(e.target.value)}
           required
         />
 
