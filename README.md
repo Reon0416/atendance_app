@@ -51,5 +51,9 @@
 | 7   | **設定画面**         |　ユーザーID変更、パスワード変更、時給変更、アカウント作成                                         | 特になし  |
 
 ## 実際の画面
-<img width="600" height="500" alt="Image" src="https://github.com/user-attachments/assets/a329e77c-707c-4f58-aecb-264c3f584364" />
-<img width="600" height="500" alt="Image" src="https://github.com/user-attachments/assets/4f4d45d7-387a-486a-aa9d-ea1e52694657" />
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/a329e77c-707c-4f58-aecb-264c3f584364" />
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/d2d2f85a-87f4-491c-8b22-a5befff7b54f" />
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/4f4d45d7-387a-486a-aa9d-ea1e52694657" />
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/64095581-a182-4e31-a10d-0f55a1084fe3" />
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/c8dfe6ad-82e4-41ff-af75-52f4cb2a2f9a" />
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/68090547-1e4b-4455-b59b-87262b8d9b17" />
