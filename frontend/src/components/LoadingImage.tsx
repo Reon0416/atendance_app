@@ -1,8 +1,9 @@
 import Rolling from "../assets/Rolling@1x-1.0s-200px-200px.gif";
+import "./style/LodingImage.css";
 
 export const LoadingImage = () => {
   return (
-    <div>
+    <div className="loading-image-container">
       <img src={Rolling} alt="ローディング中" />
     </div>
   );
