@@ -51,5 +51,5 @@
 | 7   | **設定画面**         |　ユーザーID変更、パスワード変更、時給変更、アカウント作成                                         | 特になし  |
 
 ## 実際の画面
-<img width="300" height="200" alt="Image" src="https://github.com/user-attachments/assets/a329e77c-707c-4f58-aecb-264c3f584364" />
-<img width="300" height="300" alt="Image" src="https://github.com/user-attachments/assets/4f4d45d7-387a-486a-aa9d-ea1e52694657" />
+<img width="600" height="500" alt="Image" src="https://github.com/user-attachments/assets/a329e77c-707c-4f58-aecb-264c3f584364" />
+<img width="600" height="500" alt="Image" src="https://github.com/user-attachments/assets/4f4d45d7-387a-486a-aa9d-ea1e52694657" />
