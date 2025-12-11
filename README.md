@@ -72,24 +72,30 @@ https://attendance-app-0416.vercel.app
 
 ### 勤怠画面
 
-<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/a329e77c-707c-4f58-aecb-264c3f584364" />
+従業員は本日の体調をスライダーで入力し、出勤ボタンを押します。この際、ポイントが蓄積され、閾値を超えたら警告が発生します。
+<img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/141c8613-3b57-49c4-940c-106abc396fce" />
 
 ### 体調推移グラフ画面
 
+一か月の体調データの推移がグラフに反映されます。
 <img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/d2d2f85a-87f4-491c-8b22-a5befff7b54f" />
 
 ### 目標&給与画面
 
+今月の給与が自動計算されて表示されます。また、従業員は目標(ほしいもの&目標金額)を設定することができ、達成率と達成までの金額を見ることができます。
 <img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/4f4d45d7-387a-486a-aa9d-ea1e52694657" />
 
 ### 設定画面
 
+オーナー、従業員共に自分のアカウントのユーザーIDとパスワードを再設定することができます。オーナーの設定画面では時給の設定と従業員アカウントの作成が可能です。
 <img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/64095581-a182-4e31-a10d-0f55a1084fe3" />
 
 ### オーナー管理画面
 
+オーナーの初期画面には閾値を超え警告の発生した従業員をリストとして表示します。これによりオーナーはどの従業員の健康状態が悪いのかを把握することができます。加えて、全従業員の体調推移グラフを一つずつ表示することができます。
 <img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/c8dfe6ad-82e4-41ff-af75-52f4cb2a2f9a" />
 
 ### 従業員給与まとめ
 
+従業員全員の労働時間と給与の詳細を一覧化した画面です。これにより人件費の計算が容易になります。
 <img width="800" height="700" alt="Image" src="https://github.com/user-attachments/assets/68090547-1e4b-4455-b59b-87262b8d9b17" />
