@@ -72,15 +72,16 @@ export function HealthChart({employeeId}: HealthChartProps) {
   return (
     <div
       className="health-chart-container"
-      style={{ width: "100%", height: 350 }}
+      style={{ width: "100%", height: 400 }}
     >
       <h3>今月の体調・モチベーション推移</h3>
 
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={chartData}
-          margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
+          margin={{ top: 5, right: 20, left: 20, bottom: 20 }}
         >
+          <Legend />
           <CartesianGrid strokeDasharray="3 3" />
 
           <XAxis dataKey="dateLabel" />
@@ -95,8 +96,6 @@ export function HealthChart({employeeId}: HealthChartProps) {
           <ReferenceLine y={0} stroke="#808080" strokeWidth={2} strokeDasharray="3 3" />
 
           <Tooltip />
-
-          <Legend />
 
           <Line
             type="monotone"

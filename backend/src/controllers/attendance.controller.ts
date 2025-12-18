@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { AttendanceAction } from "@prisma/client";
+import { AttendanceAction } from "../../generated/prisma/enums";
 import { prisma } from "../prismaClient";
 import { AuthRequest } from "../middlewares/authMiddleware";
 import { getMonthlyAttendanceRecords } from "../services/attendanceService";
