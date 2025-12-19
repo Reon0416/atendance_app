@@ -3,7 +3,7 @@ import { prisma } from "../prismaClient";
 import bcrypt from "bcrypt";
 import { AuthRequest } from "../middlewares/authMiddleware";
 import { AccountRegisterBody } from "../type";
-import { Role } from "../../generated/prisma/enums";
+import { Role } from "../generated/prisma/enums";
 
 // パスワード変更のリクエストボディの型
 type PasswordUpdateBody = {
