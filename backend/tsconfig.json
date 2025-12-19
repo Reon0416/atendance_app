@@ -7,9 +7,6 @@
     "strict": true,
     "outDir": "dist",
     "rootDir": ".",
-    "paths": {
-      "@prisma/client": ["./generated/prisma"]
-    },
     "resolveJsonModule": true,
     "skipLibCheck": true
   },

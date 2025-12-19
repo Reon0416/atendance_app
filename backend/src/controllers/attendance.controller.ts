@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { AttendanceAction } from "../../generated/prisma/enums";
-import prisma from "../prismaClient";
+import { prisma } from "../prismaClient";
 import { AuthRequest } from "../middlewares/authMiddleware";
 import { getMonthlyAttendanceRecords } from "../services/attendanceService";
 
@@ -97,10 +97,8 @@ export async function getLatestAttendanceRecordHandler(
     return res.status(200).json(records);
   } catch (error) {
     console.error("Failed to fetch latest attendance record:", error);
-    return res
-      .status(500)
-      .json({
-        message: "最新の勤怠記録の取得中にサーバーエラーが発生しました",
-      });
+    return res.status(500).json({
+      message: "最新の勤怠記録の取得中にサーバーエラーが発生しました",
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { AuthRequest } from "./auth.controller";
 import { Response } from "express";
-import prisma from "../prismaClient";
+import { prisma } from "../prismaClient";
 import { calculatePayroll } from "../services/payrollService";
 import { getAttendanceRecordsSince } from "../services/attendanceService";
 import { console } from "inspector";
