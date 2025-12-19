@@ -12,9 +12,6 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "imports": {
-    "#main-entry-point": "./generated/prisma/index.js"
-  },
   "dependencies": {
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
